@@ -24,6 +24,7 @@ body {
 #top_nav {
 	width: 100%;
 	height: 65px;
+	/*background-color: #555555;*/
 	background-color: #66ccff;
 	text-align: center;
 }
@@ -65,8 +66,7 @@ body {
 #top_path {
 	width: 100%;
 	height: 1.5em;
-	/* background-color: #fafafa; */
-	background-color: #e5e5e5;
+	background-color: #fafafa;
 }
 
 #top_path ol {
@@ -83,6 +83,23 @@ body {
 
 
 </style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#tp').keyup(function(){
+		if ($('#tp').val().length == 6)
+			$('#top_nav').css({'background-color': '#' + $('#tp').val()});
+	})
+	$('#ph').keyup(function(){
+		if ($('#ph').val().length == 6)
+			$('#top_path').css({'background-color': '#' + $('#ph').val()});
+	})
+	$('#bg').keyup(function(){
+		if ($('#bg').val().length == 6)
+			$('body').css({'background-color': '#' + $('#bg').val()});
+	})
+})
+</script>
 
 <body>
 	<div id="top_nav">
@@ -133,7 +150,12 @@ body {
 	
 	<div id="main_land">
 		<div style="width:100%;height:40px;background-color:#eeeeee;">
+
 		</div>
+
+		<input type="text" id="tp" /><br>
+		<input type="text" id="ph" /><br>
+		<input type="text" id="bg" />
 	</div>
 </body>
 </html>
