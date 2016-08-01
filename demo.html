@@ -7,15 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="script/sys.js"></script>
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet">
-    
-
-    <link rel="stylesheet" href="css/github.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
-
 </head>
 
 <script type="text/javascript">
@@ -32,40 +26,20 @@ $(document).ready(function(){
         if ($('#bg').val().length == 6)
             $('body').css({'background-color': '#' + $('#bg').val()});
     })
-    
-    
-    
 })
 </script>
 
 <body>
-    <div id="load_pad">
-        <div class="top_mid">
-            <h4 id="load_title">Loading ...</h4>
-            <div class="progress progress-striped active" id="load_progress">
-                <div class="progress-bar progress-bar-info" role="progressbar" 
-                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 
-                    style="width: 0%;" id="load_progress_img">
-                </div>
-            </div>
-            <p id="load_progress_text"></p>
-            <div id="load_failed" class="alert alert-danger hidden" role="alert">
-                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-                <span id="load_failed_msg"></span>
-            </div>
-        </div>
-    </div>
-    
     <div id="top_nav">
         <div>
         </div>
 
         <div class="top_mid">
-            <div class="nav_button" id="nav_home">
+            <div class="nav_button">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span><br>
                 <span aria-hidden="true">Home</span>
             </div>
-            <div class="nav_button" id="nav_problem">
+            <div class="nav_button">
                 <span class="glyphicon glyphicon-console" aria-hidden="true"></span><br>
                 <span>Problems</span>
             </div>
@@ -97,14 +71,73 @@ $(document).ready(function(){
     <div id="top_path">
         <div class="top_mid">
             <ol class="breadcrumb">
-              
+              <li><a href="#">Problems</a></li>
+              <li><a href="#">1</a></li>
+              <li class="active">description</li>
             </ol>
         </div>
     </div>
     
     <div id="main_land">
-        <div class="land_top"></div>
-        <div class="land_content"></div>
+        <div class="land_top">
+            <div class="land_button land_button_active">
+                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+            </div>
+            <div class="land_button">
+                <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
+            </div>
+            <div class="land_button">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            </div>
+            <div class="land_button">
+                <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+            </div>
+            <div class="land_button">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </div>
+            
+            
+            <div class="land_button pull-right">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            </div>
+            <div class="land_button pull-right">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            </div>
+            
+        </div>
+        <div class="land_content">
+            <!-- This part is only a demo -->
+            <h1 style="text-align:center;">A + B Problem</h1>
+            <h3>题目描述</h3>
+            <p style="padding: 0px 15px;">
+                <spam>给你一个a，再给你一个b</span><br>
+                <span>你要输出a+b</span>
+            </p>
+            <h3>输入</h3>
+            <p style="padding: 0px 15px;">
+                <spam>输入一行，包含两个整数a, b</span>
+            </p>
+            <h3>输出</h3>
+            <p style="padding: 0px 15px;">
+                <spam>输出一行，包含一个整数</span><br>
+                <span>表示a与b的和</span>
+            </p>
+            <h3>样例输入</h3>
+            <p  style="padding: 0px 15px;">
+                <textarea style="min-width:100%;max-width:100%;">233 2333</textarea>
+            </p>
+            <h3>样例输出</h3>
+            <p  style="padding: 0px 15px;">
+                <textarea style="min-width:100%;max-width:100%;">2566</textarea>
+            </p>
+            <h3>数据范围与限制</h3>
+            <p  style="padding: 0px 15px;">
+                <span>-10 &lt; a,b &lt; 10 </span><br>
+                <span>时间限制：1000ms</span><br>
+                <span>空间限制：2MB</span>
+            </p>
+            <!-- This part is only a demo -->
+        </div>
         
         <div id="param_adjuster" style="display:none;">
             <input type="text" id="tp" /><br>
