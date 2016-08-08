@@ -4,12 +4,15 @@
         // just for demo
         var probs = $('.problem_list_raw')
         
-        for(var it = 0; it < 20; ++ it) {
+        for(var it = 0; it < probs.length; ++ it) {
             (function(i){
-                if(!probs.eq(it).hasClass('binded')) {
-                    probs.eq(it).addClass('binded');
-                    probs.eq(it).click(function(){
-                        moveToNextPage('single_problem', {probId : i + 1});
+                if(!probs.eq(i).hasClass('binded')) {
+                    probs.eq(i).addClass('binded');
+                    probs.eq(i).click(function(){
+                        moveToNextPage('single_problem', {
+                            contestId : 0,
+                            probId : parseInt(probs.eq(i).children().eq(1).text().slice(1))
+                        });
                     });
                 }
 
@@ -74,30 +77,31 @@
             }
         }
         
-        $('#problem_search_filter_text').keyup(function(){
+        $('#problem_search_filter_text').on('input', function(){
             var ret = filterChecker();
+            var sign = $('#problem_search_filter .glyphicon.form-control-feedback');
             if(ret === null) {
-                if($('#problem_search_filter .glyphicon').hasClass('glyphicon-ok')) {
-                    $('#problem_search_filter .glyphicon').removeClass('glyphicon-ok');
+                if(sign.hasClass('glyphicon-ok')) {
+                    sign.removeClass('glyphicon-ok');
                 }
-                if($('#problem_search_filter .glyphicon').hasClass('glyphicon-remove')) {
-                    $('#problem_search_filter .glyphicon').removeClass('glyphicon-remove');
+                if(sign.hasClass('glyphicon-remove')) {
+                    sign.removeClass('glyphicon-remove');
                 }
             }
             else if(typeof(ret) === 'string') {
-                if($('#problem_search_filter .glyphicon').hasClass('glyphicon-ok')) {
-                    $('#problem_search_filter .glyphicon').removeClass('glyphicon-ok');
+                if(sign.hasClass('glyphicon-ok')) {
+                    sign.removeClass('glyphicon-ok');
                 }
-                if(!$('#problem_search_filter .glyphicon').hasClass('glyphicon-remove')) {
-                    $('#problem_search_filter .glyphicon').addClass('glyphicon-remove');
+                if(!sign.hasClass('glyphicon-remove')) {
+                    sign.addClass('glyphicon-remove');
                 }
             }
             else {
-                if($('#problem_search_filter .glyphicon').hasClass('glyphicon-remove')) {
-                    $('#problem_search_filter .glyphicon').removeClass('glyphicon-remove');
+                if(sign.hasClass('glyphicon-remove')) {
+                    sign.removeClass('glyphicon-remove');
                 }
-                if(!$('#problem_search_filter .glyphicon').hasClass('glyphicon-ok')) {
-                    $('#problem_search_filter .glyphicon').addClass('glyphicon-ok');
+                if(!sign.hasClass('glyphicon-ok')) {
+                    sign.addClass('glyphicon-ok');
                 }
             }
         });

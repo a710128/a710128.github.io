@@ -2,6 +2,10 @@ body {
 	background-color: #fafafa;
 }
 
+#logo_top_div {
+	background: url('/storages/avatars/logo.png')  no-repeat center center;
+}
+
 #top_nav {
 	background-color: #777777;
 }
@@ -121,9 +125,67 @@ body {
 }
 
 #single_problem_comment_table tr {
-	border-bottom: 1px solid #aaaaaa;
+	border-bottom: 1px solid #ddd;
 }
 
 #single_problem_comment_table .comment_content {
 	background-color: #fcfcfc;
+}
+
+#single_problem_comment_div .comment_user span {
+	color: #999999;
+}
+
+#comment_post div {
+	border-left: 1px solid #ddd;
+}
+
+#comment_post_text {
+	border-top-color: #ddd;
+	border-left-color: #ddd;
+	border-right-color: #ddd;
+	border-bottom-color: #ddd;
+}
+
+#comment_post_text:focus {
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(221,221,221,.6);
+    outline-style: none;
+}
+
+#comment_post div {
+	background-color: #fafafa;
+}
+
+#comment_post_text_clear,
+#comment_post_text_submit {
+	color: #aaaaaa;
+}
+
+#single_problem_rank_table th:hover {
+    background-color: #f0f0f0;
+}
+
+#contest_search_filter input:focus {
+    border-color: #aaaaaa;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(221,221,221,.6)
+}
+
+#contest_search_filter_hint {
+	color: #999999;
+}
+
+#status_filter input:focus {
+    border-color: #aaaaaa;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(221,221,221,.6);
+}
+
+#blog_filter input:focus {
+    border-color: #aaaaaa;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(221,221,221,.6);
+}
+
+textarea:focus {
+    border-color: #aaaaaa;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(221,221,221,.6);
+    outline-style: none;
 }

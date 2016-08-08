@@ -3,23 +3,33 @@ body {
     overflow-y: scroll; 
 }
 
+.binded:hover {
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 .nav_button {
-	width: 95px;
+	width: 85px;
 	height: 100%;
 	padding-top: 8px;
 	display: inline-block;
+	vertical-align: top;
 }
 
 #top_nav {
 	width: 100%;
 	height: 65px;
 	text-align: center;
+	min-width: 1000px;
 }
 
 .top_mid {
 	margin: auto;
 	height: 100%;
-	width: 700px;
+	display: inline-block;
 }
 
 .nav_button:hover {
@@ -44,6 +54,7 @@ body {
 
 
 #top_path {
+	padding-left: 150px;
 	width: 100%;
 	height: 1.5em;
 }
@@ -53,6 +64,51 @@ body {
 	margin-bottom: unset;
 	background-color: unset;
 	padding-left: 35px;
+}
+
+.avatar_top {
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	margin-bottom: -1px;
+}
+
+#avatar_top_div {
+	display: inline-block;
+	width: 180px;
+	height: 65px;
+	margin-right: 10px;
+}
+
+#logo_top_div {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width: 180px;
+	height: 65px;
+	top: 0px;
+	margin-left: 10px;
+}
+
+#avatar_top_div div.nav_button,
+#logo_top_div div.nav_button {
+	width: 100%;
+}
+
+#avatar_top_left,
+#avatar_top_right {
+	display: inline-block;
+	height: 100%;
+	vertical-align: top;
+}
+
+#avatar_top_left {
+	width: 55px;
+	text-align: center;
+}
+#avatar_top_right {
+	padding-top: 5px;
+	width: 120px;
 }
 
 .land_top {
@@ -158,32 +214,28 @@ body {
 }
 
 
-#problem_list_header th:nth-of-type(1) {
+#problem_list_header #flag {
     width: 60px;
     text-align: center;
 }
-#problem_list_header th:nth-of-type(2) {
+#problem_list_header #id {
 	width: 70px;
 	text-align: center;
 }
 
-#problem_list_header th:nth-of-type(3) {
+#problem_list_header #name {
 	width: 460px;
 }
 
-#problem_list_header th:nth-of-type(4),
-#problem_list_header th:nth-of-type(5) {
+#problem_list_header #ac,
+#problem_list_header #all {
 	width: 60px;
 	text-align: center;
 }
 
-#problem_list_header th:nth-of-type(6) {
+#problem_list_header #source {
 	width: 90px;
 	text-align: center;
-}
-
-.problem_list_raw.binded {
-	cursor: pointer;
 }
 
 .problem_list_raw td:nth-of-type(3){
@@ -197,11 +249,12 @@ body {
 #problems_pagination {
 	width: 100%;
 	height: 60px;
-    
+	margin-bottom: 25px;
 }
 
 #pagination_ul {
     text-align: center;
+    padding-left: 0px;
 }
 
 #pagination_ul li {
@@ -221,12 +274,12 @@ body {
 }
 
 #problem_search_div {
-    padding: 15px 25px;
+    padding: 15px 30px;
     height:55px;
 }
 
 #problem_search_filter {
-    width: 300px;
+    width: 500px;
     float: left;
 }
 
@@ -310,6 +363,9 @@ body {
 	-ms-user-select:none;
 	user-select:none;
 }
+.code_viewer .code_viewer_rownum::before {
+	content: attr(line-number)
+}
 
 .code_viewer .code_viewer_rowcontent {
 	text-align: left;
@@ -389,10 +445,6 @@ body {
 	display: block;
 }
 
-#single_problem_comment_div .comment_user span {
-	color: #999999;
-}
-
 #single_problem_comment_table .comment_content {
 	padding-top: 15px;
 	padding-bottom: 15px;
@@ -403,5 +455,554 @@ body {
 #comments_pagination {
 	width: 100%;
 	height: 60px;
-    
+}
+
+#comment_post_text {
+	width: 700px;
+	height: 130px;
+	position: relative;
+	top: 0px;
+	left: 1px;
+	margin-top: -1px;
+	margin-left: -2px;
+	resize: none;
+}
+
+#comment_post div {
+	height: 150px;
+}
+
+#comment_post div p {
+	margin-top: -5px;
+	padding-left: 550px;
+}
+
+#comment_post_text_clear {
+	margin-right: 20px;
+}
+
+#comment_post_text_submit {
+	margin-right: 5px;
+}
+
+#comment_post div p img {
+	padding-bottom: 2px;
+}
+
+#comment_post_text_clear:hover,
+#comment_post_text_submit:hover {
+	cursor: pointer;
+}
+
+
+#single_problem_rank {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 30px;
+	margin-bottom: 25px;
+}
+
+#single_problem_rank_table {
+	width: 100%;
+}
+
+#single_problem_rank_table #rank {
+	width: 60px;
+}
+
+#single_problem_rank_table #author {
+	width: 310px;
+}
+
+#single_problem_rank_table #memory,
+#single_problem_rank_table #length {
+	width: 70px;
+}
+
+#single_problem_rank_table #score,
+#single_problem_rank_table #time {
+	width: 60px;
+}
+
+#single_problem_rank_table #date {
+	width: 150px !important;
+}
+
+#single_problem_rank_table #rank,
+#single_problem_rank_table #author,
+#single_problem_rank_table #memory,
+#single_problem_rank_table #length,
+#single_problem_rank_table #score,
+#single_problem_rank_table #time,
+#single_problem_rank_table #date {
+	text-align: center;
+}
+
+#single_problem_rank_table {
+	text-align: center;
+}
+
+#single_problem_rank_table th:hover {
+    cursor: pointer;
+}
+
+/* Contest */
+
+#contest_list_div {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 30px;
+}
+
+#contest_list {
+	width: 100%;
+	text-align: center;
+}
+
+#contest_list #id,
+#contest_list #rank,
+#contest_list #all {
+	width: 60px;
+}
+#contest_list #name {
+	width: 340px;
+}
+#contest_list #start,
+#contest_list #end {
+	width: 140px !important;
+}
+
+#contest_list th {
+	text-align: center;
+}
+
+#contests_pagination {
+	margin-bottom: 25px;
+	height: 60px;
+	width: 100%;
+}
+
+#contest_search_div {
+	margin: 15px 30px;
+}
+
+#contest_search_filter {
+	width: 500px;
+}
+
+#contest_search_filter div {
+	border-radius: 0px;
+}
+
+#contest_search_filter_text,
+#contest_search_filter_hint {
+	width: 461px;
+	border-radius: 0px;
+}
+
+#contest_search_filter_text {
+	background-color: transparent;
+	position: absolute;
+	left: 39px;
+	top: 0px;
+	z-index: 2;
+}
+
+#contest_search_filter_hint {
+	background-color: #ffffff;
+	z-index: 1;
+}
+
+#contest_search_list_div {
+	width: 800px;
+	margin-left: 30px;
+}
+#contest_search_list {
+	margin-top: 25px;
+}
+
+#notice_time_divider {
+	padding: 0px 10px;
+}
+
+
+#contest_problem_list_div {
+	width:  800px;
+	margin-left: 30px;
+	margin-top: 30px;
+	margin-bottom: 35px;
+}
+
+#contest_problem_list {
+	width: 100%;
+}
+
+#contest_problem_list_header #id {
+	width: 60px;
+	text-align: center;
+}
+
+#contest_problem_list_header #score {
+	width: 100px;
+	text-align: center;
+}
+
+#contest_problem_list tr td:nth-of-type(1),
+#contest_problem_list tr td:nth-of-type(3) {
+	text-align: center;
+}
+
+#status_div {
+    padding: 15px 30px;
+    height:55px;
+}
+
+#status_filter {
+    width: 500px;
+    float: left;
+}
+
+#status_filter div,
+#status_filter input {
+    border-radius: 0px;
+}
+
+#status_filter div span {
+    font-size: 17px;
+}
+
+#status_filter span.glyphicon {
+    z-index: 4;
+}
+
+#status_list_div {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+#status_list {
+	width: 100%;
+	text-align: center;
+}
+
+#status_list #id {
+	width: 80px;
+	text-align: center;
+}
+
+#status_list #name {
+	width: 250px;
+	text-align: center;
+}
+
+#status_list #author {
+	width: 200px;
+	text-align: center;
+}
+
+
+#status_list #time,
+#status_list #score {
+	width: 60px;
+	text-align: center;
+}
+
+#status_list #date {
+	width: 150px !important;
+	text-align: center;
+}
+
+#status_pagination {
+	width: 100%;
+	height: 60px;
+	margin-bottom: 25px;
+}
+
+#contest_rank_div {
+	overflow-x: auto;
+	overflow-y: hidden;
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+
+}
+#contest_rank {
+	min-width: 800px;
+	margin-top: -1px;
+	margin-left: -1px;
+	margin-bottom: -1px;
+	border-width: 0px;
+}
+
+#contest_rank tr td:first-child,
+#contest_rank tr th:first-child {
+	border-left: none;
+}
+
+#contest_rank tr td:last-child,
+#contest_rank tr th:last-child {
+	border-right: none;
+}
+
+#contest_rank_header th {
+	min-width: 50px;
+}
+
+#contest_rank #rank {
+	min-width: 80px;
+}
+#contest_rank #name {
+	min-width: 200px;
+}
+#contest_rank #total {
+	min-width: 100px;
+}
+
+#contest_rank tr th,
+#contest_rank {
+	text-align: center;
+}
+
+#contest_rank_pagination {
+	width: 100%;
+	height: 60px;
+	margin-bottom: 25px;
+}
+
+/* Battle */
+
+#battle_rank {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+#battle_rank_table {
+	text-align: center;
+}
+
+#battle_rank_table #rank {
+	width: 80px;
+	text-align: center;
+}
+
+#battle_rank_table #name {
+	width: 320px;
+	text-align: center;
+}
+
+#battle_rank_table #number,
+#battle_rank_table #level {
+	width: 100px;
+	text-align: center;
+}
+
+#battle_rank_table #date {
+	width: 200px;
+	text-align: center;
+}
+
+#submission_info {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	margin-bottom: 35px;
+}
+
+#submission_info_std td:first-child {
+	width: 200px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#submission_info_std td:last-child {
+	width: 600px;
+	text-align: center;
+}
+
+#submission_result {
+	width: 800px;
+	margin-top: 25px;
+	margin-left: 30px;
+	margin-bottom: 35px;
+}
+
+table.normal-score-table tr:first-child,
+table.normal-score-table tr:first-child th,
+table.normal-score-table tr:first-child td {
+	border-top: none;
+}
+
+table.normal-score-table {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.normal-score-table {
+	text-align: center;
+	width: 800px;
+}
+
+hr.submission_hr {
+	width: 820px;
+	margin-left: 20px;
+}
+
+#status_code {
+	margin-top: 25px;
+	margin-bottom: 35px;
+}
+
+/* Blog */
+
+#blog_list_div {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+}
+
+#blog_list {
+	text-align: center;
+}
+
+#blog_list #flag {
+	width: 80px;
+	text-align: center;
+}
+
+#blog_list #name {
+	width: 420px;
+}
+
+#blog_list #author {
+	width: 150px;
+	text-align: center;
+}
+
+#blog_list #date {
+	width: 150px;
+	text-align: center;
+}
+
+.blog_list_row td:nth-of-type(2) {
+	text-align: left;
+}
+
+
+#blog_search_div {
+    padding: 15px 30px;
+    height:55px;
+}
+#blog_filter {
+    width: 500px;
+    float: left;
+}
+
+#blog_filter div,
+#blog_filter input {
+    border-radius: 0px;
+}
+
+#blog_filter div span {
+    font-size: 17px;
+}
+
+#blog_search_list_div {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+}
+
+#blog_filter span.glyphicon {
+    z-index: 4;
+}
+
+/* single blog */
+
+#blog_header {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+}
+
+#blog_title {
+	font-size: 30px;
+}
+
+.avatar_sm {
+	width: 25px;
+	height: 25px;
+	border-radius: 25px
+}
+
+#blog_avatar {
+	margin-left: 7px;
+	margin-right: 0px;
+	margin-top: -4px;
+}
+
+#blog_content {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	margin-bottom: 35px;
+}
+
+/* User */
+#user_info_top {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	height: 60px;
+}
+#user_info_name {
+	font-size: 30px;
+	padding-top: 10px;
+	margin-left: 20px;
+}
+#user_info_avatar {
+	border: 1px solid #eee;
+}
+.user_info_hr {
+	margin: 10px 20px;
+}
+#user_info_problem {
+	display: inline-block;
+	margin-left: 25px;
+	padding-top: 30px;
+}
+#user_info_problem #ac_w,
+#user_info_problem #total_w {
+	margin-left: 20px;
+}
+#user_info_contest {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+}
+.container {
+	width: 800px;
+	height: 300px;
+}
+#user_info_submission {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	margin-bottom: 35px;
+}
+#user_info_main {
+	width: 800px;
+	margin-left: 30px;
+	margin-top: 25px;
+	padding: 0px 24px;
+}
+
+/* Highcharts */
+svg text[text-anchor=end] {
+	display: none;
 }

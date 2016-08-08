@@ -5,14 +5,28 @@ $(document).ready(function(){
         
         var nowPath = [];
         
+
+        var getCurrentSubpages = function(page) {
+            var ret = [];
+            for(var i = 0; i < page.subpages.length; ++ i) {
+                if(page.subpages[i].hidden === true) {
+                    ;//pass
+                }
+                else {
+                    ret.push(page.subpages[i]);
+                }
+            }
+            return ret;
+        }
+
         var showSubpage = function(page, newSubpage) {
             var tops = $('#main_land .land_top .land_button');
-            
+            var currentSubpage = getCurrentSubpages(page);
             //remove the last two button
             tops = tops.slice(0, tops.length - 2);
             
-            if (page.subpages.length !== tops.length) {
-                console.error(page.subpages.length.toString() + ' != ' + tops.length.toString());
+            if (currentSubpage.length !== tops.length) {
+                console.error(currentSubpage.length.toString() + ' != ' + tops.length.toString());
                 console.error('Unknown error. Please contact us.');
                 return;
             }
@@ -23,10 +37,10 @@ $(document).ready(function(){
             
             if (newSubpage < tops.length) {
                 tops.eq(newSubpage).addClass('land_button_active');
-                $('#main_land .land_content').html(page.subpages[newSubpage].content);
+                $('#main_land .land_content').html(currentSubpage[newSubpage].content);
                 page.nowSubpage = newSubpage;
                 
-                page.subpages[newSubpage].initial();
+                currentSubpage[newSubpage].initial();
                 
                 //update Path
                 showPath();
@@ -69,7 +83,7 @@ $(document).ready(function(){
             var tops = $('#top_path ol li a');
             for(var it = 0; it < tops.length; ++ it) {
                 (function(i){
-                    $('#top_path ol li a :eq(' + i.toString() + ')').bind("click",function(){
+                    tops.eq(i).bind("click",function(){
                         nowPath = nowPath.slice(0, i + 1);
                         var lastPage = nowPath[nowPath.length - 1];
                         showPage(lastPage);
@@ -84,15 +98,17 @@ $(document).ready(function(){
                 topPathHtml += '<li><a href="#">' + nowPath[i].getName() + '</a></li>';
             }
             var lastPage = nowPath[nowPath.length - 1];
-            topPathHtml += '<li class="active">' + lastPage.subpages[lastPage.nowSubpage].name + '</li>';
+            var currentSubpage = getCurrentSubpages(lastPage);
+            topPathHtml += '<li class="active">' + currentSubpage[lastPage.nowSubpage].name + '</li>';
             $('#top_path .top_mid ol').html(topPathHtml);
         }
         
         var showPage = function(page) {
             
             var landTopHtml = '';
-            for(var i = 0; i < page.subpages.length; ++ i) {
-                landTopHtml += '<div class="land_button"><span class="glyphicon glyphicon-' + page.subpages[i].icon + '" aria-hidden="true"></span></div>';
+            var currentSubpage = getCurrentSubpages(page);
+            for(var i = 0; i < currentSubpage.length; ++ i) {
+                landTopHtml += '<div class="land_button"><span class="glyphicon glyphicon-' + currentSubpage[i].icon + '" aria-hidden="true"></span></div>';
             }
             landTopHtml += '<div class="land_button pull-right"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span></div>';
             landTopHtml += '<div class="land_button pull-right"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></div>';
@@ -143,6 +159,7 @@ $(document).ready(function(){
 
         window.moveToNextPage = function(page, param) {
             var page = pageList[page];
+
             nowPath.push(page);
 
             page.nowSubpage = 0;
@@ -153,7 +170,7 @@ $(document).ready(function(){
 
             $(window).scrollTop(0);
         }
-        console.log(pageList);
+
         for(var key in pageList) {
             if($('#nav_' + key).length) {
                 (function(key){
@@ -210,6 +227,14 @@ $(document).ready(function(){
             };
             
             this.nowSubpage = 0;
+
+            this.getSubpage = function(name) {
+                for(var i = 0; i < this.subpages.length; ++ i)
+                    if(this.subpages[i].name === name)
+                        return this.subpages[i];
+                console.error('Cant find subpage : ' + name);
+                return null;
+            }
             
             this.getSourceNum = function() {
                 return this.subpages.length;
@@ -270,7 +295,15 @@ $(document).ready(function(){
         var modelList = {
             'home' : 'script/home.js',
             'problem' : 'script/problem.js',
-            'single_problem' : 'script/single_problem.js'
+            'single_problem' : 'script/single_problem.js',
+            'contest': 'script/contest.js',
+            'single_contest' : 'script/single_contest.js',
+            'battle' : 'script/battle.js',
+            'status' : 'script/status.js',
+            'submission' : 'script/submission.js',
+            'blog' : 'script/blog.js',
+            'single_blog' : 'script/single_blog.js',
+            'user' : 'script/user.js'
         };
         var pageList = {};
         

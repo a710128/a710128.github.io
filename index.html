@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/highcharts/4.2.6/highcharts.js"></script>
     <script src="script/sys.js"></script>
     <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -57,10 +58,11 @@ $(document).ready(function(){
     </div>
     
     <div id="top_nav">
-        <div>
+        <div id="logo_top_div" class="pull-left">
         </div>
-
         <div class="top_mid">
+            
+
             <div class="nav_button" id="nav_home">
                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span><br>
                 <span aria-hidden="true">Home</span>
@@ -69,29 +71,44 @@ $(document).ready(function(){
                 <span class="glyphicon glyphicon-console" aria-hidden="true"></span><br>
                 <span>Problems</span>
             </div>
-            <div class="nav_button">
+            <div class="nav_button" id="nav_contest">
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span><br>
                 <span>Contests</span>
             </div>
-            <div class="nav_button">
+            <div class="nav_button" id="nav_battle">
                 <span class="glyphicon glyphicon-flag" aria-hidden="true"></span><br>
                 <span>Battles</span>
             </div>
-            <div class="nav_button">
+            <div class="nav_button" id="nav_status">
                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br>
                 <span>Status</span>
             </div>
-            <div class="nav_button">
+            <div class="nav_button" id="nav_blog">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><br>
                 <span>Blogs</span>
             </div>
-            <!--
+        <!--
             <div class="nav_button">
                 <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><br>
                 <span>FAQs</span>
             </div>
-            -->
+        -->
+            
         </div>
+
+        <div id="avatar_top_div" class="pull-right">
+            <div class="nav_button" id="nav_user">
+                <div id="avatar_top_left">
+                    <img class="avatar_top" src="storages/avatars/anonymous.jpg" />
+                </div>
+                <div id="avatar_top_right">
+                    <span id="avatar_top_name">Anonymous</span><br>
+                    <span id="avatar_top_level">Lv. 0</span>
+                </div>
+            </div>
+        </div>
+        
+        
 
     </div>
     <div id="top_path">
@@ -116,7 +133,7 @@ $(document).ready(function(){
 
     <div id="footer">
         <p>
-            <span>xxx Online Judge</span><br>
+            <span>OldDrivers powered by a710128</span><br>
             <span>Server Time: GMT+8, 2016-1-1 11:22:33</span><br>
             <a href="#">FAQ</a>|
             <a href="#">API</a>|

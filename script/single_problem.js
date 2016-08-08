@@ -12,7 +12,31 @@
         });
     });
 
-    P.addSubpage('comment', 'comment', 'view/single_problem/comment.html')
+    P.addSubpage('comment', 'comment', 'view/single_problem/comment.html', function(){
+        var avatars = $('#single_problem_comment_table .comment_user a');
+        avatars = avatars.slice(0, avatars.length - 1);
+        if(!avatars.hasClass('binded')) {
+            avatars.addClass('binded');
+            avatars.click(function(){
+                moveToNewPage('user', {
+                    userId : 1
+                });
+            });
+        }
+    });
+
+    P.addSubpage('rank', 'sort-by-attributes', 'view/single_problem/rank.html', function(){
+        var avatars = $('#single_problem_rank_table tr').slice(1);
+        if(!avatars.hasClass('binded')) {
+            avatars.addClass('binded');
+            avatars.click(function(){
+                moveToNewPage('user', {
+                    userId : 1
+                });
+            });
+        }
+
+    });
 
     P.load = function() {
         //ajax code get notice!
@@ -55,8 +79,8 @@
                     + '<pre><table>'
 
                 for(var i = 0; i < rows.length; ++ i) {
-                    ret += '<tr class="code_viewer_row"><td class="code_viewer_rownum">' + (i + 1).toString()
-                         + '</td><td class="code_viewer_rowcontent">' + rows[i] + '</td></tr>';
+                    ret += '<tr class="code_viewer_row"><td class="code_viewer_rownum" line-number="' + (i + 1).toString()
+                         + '"></td><td class="code_viewer_rowcontent">' + rows[i] + '</td></tr>';
                 }
                 ret += '</table></pre>';
                 return ret;
@@ -83,9 +107,14 @@
             }
 
             if($('.code_viewer').css('display') !== 'none')
-                $('.code_viewer').hide(100);
-            $('.code_viewer').html(code);
-            $('.code_viewer').show(100);
+                $('.code_viewer').hide(500, function(){
+                    $('.code_viewer').html(code);
+                    $('.code_viewer').show(500);
+                });
+            else {
+                $('.code_viewer').html(code);
+                $('.code_viewer').show(500);
+            }
         },
 
         loadFile : function(files) {
@@ -125,6 +154,16 @@
     };
     P.initial = function(param){
         this.method.probId = param.probId;
+        this.method.contestId = param.contestId;
+
+        if(this.method.contestId !== 0) {
+            this.getSubpage('comment').hidden = true;
+            this.getSubpage('rank').hidden = true;
+        }
+        else {
+            this.getSubpage('comment').hidden = false;
+            this.getSubpage('rank').hidden = false;
+        }
         if(typeof(this.method.file) !== 'undefined')
             delete this.method.file;
         if(typeof(this.method.file_ext) !== 'undefined')
