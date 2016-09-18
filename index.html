@@ -1,146 +1,238 @@
-
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Demo</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-    <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdn.bootcss.com/highcharts/4.2.6/highcharts.js"></script>
-    <script src="script/sys.js"></script>
-    <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/default.css" rel="stylesheet">
-    
-
-    <link rel="stylesheet" href="css/github.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
-
+	<title>选课2.0</title>
+	<meta charset='utf-8'>
+	<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    $('#tp').keyup(function(){
-        if ($('#tp').val().length == 6)
-            $('#top_nav').css({'background-color': '#' + $('#tp').val()});
-    })
-    $('#ph').keyup(function(){
-        if ($('#ph').val().length == 6)
-            $('#top_path').css({'background-color': '#' + $('#ph').val()});
-    })
-    $('#bg').keyup(function(){
-        if ($('#bg').val().length == 6)
-            $('body').css({'background-color': '#' + $('#bg').val()});
-    })
-    
-    
-    
-})
-</script>
 
 <body>
-    <div id="load_pad">
-        <div class="top_mid">
-            <h4 id="load_title">Loading ...</h4>
-            <div class="progress progress-striped active" id="load_progress">
-                <div class="progress-bar progress-bar-info" role="progressbar" 
-                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 
-                    style="width: 0%;" id="load_progress_img">
-                </div>
-            </div>
-            <p id="load_progress_text"></p>
-            <div id="load_failed" class="alert alert-danger hidden" role="alert">
-                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
-                <span id="load_failed_msg"></span>
-            </div>
-        </div>
-    </div>
-    
-    <div id="top_nav">
-        <div id="logo_top_div" class="pull-left">
-        </div>
-        <div class="top_mid">
-            
 
-            <div class="nav_button" id="nav_home">
-                <span class="glyphicon glyphicon-home" aria-hidden="true"></span><br>
-                <span aria-hidden="true">Home</span>
-            </div>
-            <div class="nav_button" id="nav_problem">
-                <span class="glyphicon glyphicon-console" aria-hidden="true"></span><br>
-                <span>Problems</span>
-            </div>
-            <div class="nav_button" id="nav_contest">
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span><br>
-                <span>Contests</span>
-            </div>
-            <div class="nav_button" id="nav_battle">
-                <span class="glyphicon glyphicon-flag" aria-hidden="true"></span><br>
-                <span>Battles</span>
-            </div>
-            <div class="nav_button" id="nav_status">
-                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br>
-                <span>Status</span>
-            </div>
-            <div class="nav_button" id="nav_blog">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><br>
-                <span>Blogs</span>
-            </div>
-        <!--
-            <div class="nav_button">
-                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span><br>
-                <span>FAQs</span>
-            </div>
-        -->
-            
-        </div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			base = window.frames[0].window;
+			//var xkurl = 'http://zhjwxk.cic.tsinghua.edu.cn/xkBks.vxkBksXkbBs.do?m=selectKc&p_xnxq=2016-2017-1';
+			var loginurl = 'http://zhjwxk.cic.tsinghua.edu.cn/xklogin.do#';
+			var xkurl = 'http://zhjwxk.cic.tsinghua.edu.cn/xkBks.vxkBksXkbBs.do?m=yxSearchTab&p_xnxq=2016-2017-1&tokenPriFlag=yx';
+			var xkfailed = 'http://zhjwxk.cic.tsinghua.edu.cn/';
+			var loginok = 'http://zhjwxk.cic.tsinghua.edu.cn/xkBks.vxkBksXkbBs.do?m=main';
+			var rxurl = 'http://zhjwxk.cic.tsinghua.edu.cn/xkBks.vxkBksXkbBs.do?m=rxSearch&p_xnxq=2016-2017-1&tokenPriFlag=rx&is_zyrxk=1';
+			var ssurl = 'http://zhjwxk.cic.tsinghua.edu.cn/xkBks.vxkBksXkbBs.do';
+			var pfurl = 'http://zhjwxk.cic.tsinghua.edu.cn/xk/visitcount.jsp';
+			var frm = $('#xkframe')[0];
+			var recuser = '';
+			var recpass = '';
+			var yxklist = [];
+			var zzxk = false;
+			var save = {
+				'kch' : '',
+				'kcm' : '',
+				'kkx' : '',
+				'kcts' : '',
+				'sort1' : 'bkskyl',
+				'sort2' : '',
+				'asc1' : 'false',
+				'asc2' : 'true'
+			}
+			frm.src = xkurl;
 
-        <div id="avatar_top_div" class="pull-right">
-            <div class="nav_button" id="nav_user">
-                <div id="avatar_top_left">
-                    <img class="avatar_top" src="storages/avatars/anonymous.jpg" />
-                </div>
-                <div id="avatar_top_right">
-                    <span id="avatar_top_name">Anonymous</span><br>
-                    <span id="avatar_top_level">Lv. 0</span>
-                </div>
-            </div>
-        </div>
-        
-        
+			function getDay(text) {
+				var tm = '';
+				var inkh = false;
+				for(var i = 0; i < text.length; ++ i) {
+					if(text[i] == '(') inkh = true;
+					if(text[i] == ')') inkh = false;
+					if(inkh === false) tm += text[i];
+				}
+				var reg = /([0-9]-[0-9])/g;
+				var ret = tm.match(reg);
+				if(ret === null) ret = [];
+				return ret;
+			}
 
-    </div>
-    <div id="top_path">
-        <div class="top_mid">
-            <ol class="breadcrumb">
-              
-            </ol>
-        </div>
-    </div>
-    
-    <div id="main_land">
-        <div class="land_top"></div>
-        <div class="land_content"></div>
-        
-        <div id="param_adjuster" style="display:none;">
-            <input type="text" id="tp" /><br>
-            <input type="text" id="ph" /><br>
-            <input type="text" id="bg" />
-        </div>
-        
-    </div>
+			function getLimit(text) {
+				var sum = 0;
+				sum += text.indexOf('不选课');
+				sum += text.indexOf('限:经管学院');
+				sum += text.indexOf('限:新雅书院');
+				sum += text.indexOf('限:航');
+				return sum === -4;
+			}
 
-    <div id="footer">
-        <p>
-            <span>OldDrivers powered by a710128</span><br>
-            <span>Server Time: GMT+8, 2016-1-1 11:22:33</span><br>
-            <a href="#">FAQ</a>|
-            <a href="#">API</a>|
-            <a href="#">Concat</a>|
-            <a href="#">About</a>
-        </p>
-    </div>
+			$('#ksqk').click(function(){
+				zzxk = true;
+				save['kch'] = base.$('#p_kch').val();
+				save['kcm'] = base.$('#p_kcm').val();
+				save['kkx'] = base.$('select').eq(0).val();
+				save['kcts'] = base.$('select').eq(1).val();
+				save['sort1'] = base.document.frm["p_sort.p1"].value;
+				save['sort2'] = base.document.frm["p_sort.p2"].value;
+				save['asc1'] = base.document.frm["p_sort.asc1"].value;
+				save['asc2'] = base.document.frm["p_sort.asc2"].value;
+				base.doQuery();
+				$('#ksqk').css('display', 'none');
+			});
+
+			frm.onload = function() {
+				var nowurl = base.document.location.href;
+				if(!zzxk) {
+					if(nowurl === xkurl) {
+						var lst = base.gridDatayxk;
+						for(var i = 0; i < lst.length; ++ i)
+							yxklist.push({
+								'name' : lst[i][2],
+								'day' : getDay(lst[i][5])
+							});
+						for(var i = 1; i <= 6; ++ i)
+							for(var j = 1; j <= 7; ++ j) {
+								$('#c' + i.toString()).children().eq(j - 1).css('background-color', 'green').text(j.toString() + '-' + i.toString());
+							}
+						for(var i = 0; i < yxklist.length; ++ i) {
+							for(var j = 0; j < yxklist[i].day.length; ++ j) {
+								var dt = yxklist[i].day[j].split('-');
+								$('#c' + dt[1]).children().eq(dt[0] - 1).css('background-color', 'red').text(yxklist[i].name);
+							}
+						}
+						frm.src = rxurl;
+					}
+					else if(nowurl === loginurl) {
+						(function(oldfunc){
+							base.doLogin = function() {
+								recuser = base.$('j_username').value;
+								recpass = base.$('j_password').value;
+								oldfunc();
+							}
+						})(base.doLogin);
+						if(recuser != '' && recpass != '') {
+							console.log('!!!');
+							base.$('j_username').value = recuser;
+							base.$('j_password').value = recpass;
+							base.document.getElementsByName('_login_image_')[0].focus();
+						}
+						$(base.window).scrollTop(1000);
+					}
+					else if(nowurl === xkfailed) {
+						frm.src = loginurl;
+					}
+					else if(nowurl === loginok) {
+						frm.src = xkurl;
+					}
+					else if(nowurl === rxurl) {
+					}
+					else if(nowurl.indexOf(ssurl) !== -1) {
+						$('#ksqk').css('display', 'inline');
+					}
+					else {
+						frm.src = rxurl;
+						console.log(nowurl);
+					}
+				}
+				else {
+					if(nowurl === loginurl) {
+						//Login recuser	recpass
+						if(recuser != '' && recpass != '') {
+							base.$('j_username').value = recuser;
+							base.$('j_password').value = recpass;
+							$('#captcah_div').css('display', 'block');
+							$('#captcah_img').attr('src', 'http://zhjwxk.cic.tsinghua.edu.cn/login-jcaptcah.jpg?captchaflag=login1&timestamp=' + (new Date()).getTime().toString());
+
+							$('#captcah').val('').focus().bind('keypress', function(event){
+								if(event.keyCode == 13) {
+									base.document.getElementsByName('_login_image_')[0].value = $('#captcah').val().toUpperCase();
+									$('#captcah_div').css('display', 'none');
+									base.doLogin();
+								}
+							});
+							return;
+						}
+					}
+					else if(nowurl === xkfailed) {
+						frm.src = loginurl;
+					}
+					else if(nowurl === loginok) {
+						frm.src = xkurl;
+					}
+					else if(nowurl === xkurl) {
+						frm.src = rxurl;
+					}
+					else if(nowurl === rxurl) {
+						base.$('#p_kch').val(save['kch']);
+						base.$('#p_kcm').val(save['kcm']);
+						base.$('select').eq(0).val(save['kkx']);
+						base.$('select').eq(1).val(save['kcts']);
+						base.document.frm["p_sort.p1"].value = save['sort1'];
+						base.document.frm["p_sort.p2"].value = save['sort2'];
+						base.document.frm["p_sort.asc1"].value = save['asc1'];
+						base.document.frm["p_sort.asc2"].value = save['asc2'];
+						base.doQuery();
+					}
+					else if(nowurl.indexOf(ssurl) !== -1) {
+						if(typeof(base.$) === 'undefined') {
+							frm.src = loginurl;
+							return;
+						}
+						var list = base.$('.trr2');
+						var total = 0;
+						for(var i = 0; i < list.length; ++ i) {
+							var rest = parseInt(list.eq(i).children().eq(4).text());
+							if(rest === 0) continue ;
+							var knm = list.eq(i).children().eq(3).text().replace(/\s/g, '');
+							var day = getDay(list.eq(i).children().eq(5).text());
+							if(!getLimit(list.eq(i).children().eq(8).text())) continue;
+							var ok = true;
+							for(var j = 0; j < day.length; ++ j)
+								for(var k = 0; k < yxklist.length; ++ k)
+									for(var l = 0; l < yxklist[k].day.length; ++ l)
+										if(day[j] == yxklist[k].day[l])
+											ok = false;
+							if(!ok) continue ;
+							for(var j = 0; j < yxklist.length; ++ j)
+								if(yxklist[j].name == knm)
+									ok = false;
+							if(!ok) continue ;
+							list.eq(i).children().eq(0).children()[0].checked = true;
+							total += 1;
+						}
+						if(total > 0) {
+							base.frm.m.value = 'saveRxKc';
+							base.frm.submit();
+							zzxk = false;
+						}
+						else {
+							setTimeout(base.doQuery, 1000 + 1000 * Math.random())
+						}
+					}
+					else if(nowurl === pfurl) {
+						frm.src = loginurl;
+					}
+					else console.log(nowurl);
+				}
+			}
+		});
+	</script>
+	<iframe id = "xkframe" width = "100%" height = "350px"></iframe>
+	<div style="text-align:center;padding-left:50px;padding-right:50px;padding-top:50px;">
+		<div style="height:170px;background-color:#fafafa;display:inline-block;">
+			<table style="text-align: center;width:100%;">
+				<tr><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期七</td></tr>
+				<tr id="c1"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+				<tr id="c2"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+				<tr id="c3"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+				<tr id="c4"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+				<tr id="c5"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+				<tr id="c6"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			</table>
+		</div>
+	</div>
+	<div style="text-align:center;margin-top:50px;">
+		<input type="button" id = "ksqk" value="开始抢课" style="display:none;" />
+	</div>
+	<div id="captcah_div" style="position:fixed;top:0px;left:0px;right:0px;bottom:0px;background-color:white;text-align:center;display:none;">
+		<div style="width:500px;height:400px;margin-left:auto;margin-right:auto;margin-top:50px;">
+			<img id="captcah_img" src="http://zhjwxk.cic.tsinghua.edu.cn/login-jcaptcah.jpg?captchaflag=login1" width="400px" height="100px" />
+			<input id="captcah" type="text" />
+		</div>
+	</div>
 </body>
-</html>
 
+</html>
