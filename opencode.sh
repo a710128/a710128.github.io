@@ -19,7 +19,7 @@ EOF
 
 cat <<EOF > $HOME/.config/opencode/oh-my-opencode.json
 {
-  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "\$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
   "agents": {
     "build": {
       "model": "anthropic/claude-sonnet-4-5-20250929-n"
